@@ -31,7 +31,7 @@ export default class RestaurantsController {
       total_results: totalNumRestaurants,
     };
     res.json(response);
-  }
+  } 
 
   static async apiGetRestaurantById(req, res, next) {
     try {
