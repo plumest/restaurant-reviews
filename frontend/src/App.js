@@ -5,8 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import AddReview from "./components/add-review";
 import Login from "./components/login";
-import RestaurantsList from "./components/restaurants-list";
 import Restaurant from "./components/restaurant";
+import RestaurantsList from "./components/restaurants-list";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -51,11 +51,13 @@ function App() {
 
       <div className="container mt-3">
         <Routes>
-          <Route path={"/"} element={<RestaurantsList />} />
-          <Route path={"/restaurants"} element={<RestaurantsList />}>
-            <Route path=":id/review" element={<AddReview user={user} />} />
-            <Route path=":id" element={<Restaurant user={user} />} />
-            <Route path="login" element={<Login login={login} />} />
+          <Route index element={<RestaurantsList />} />
+          <Route path={"restaurants"}>
+            <Route index element={<RestaurantsList />} />
+            <Route path={":id"}>
+              <Route index element={<Restaurant user={user} />} />
+              <Route path={"review"} element={<AddReview user={user} />} />
+            </Route>
           </Route>
           <Route path="login" element={<Login login={login} />} />
         </Routes>
